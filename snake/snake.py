@@ -9,11 +9,22 @@ RIGHT = 0
 
 class Snake:
     def __init__(self):
+        self.to_initial_pos()
+
+
+    def to_initial_pos(self):
         self.segments = []
         for pos in STARTING_POSITIONS:
             self.add_segment(pos)
 
         self.head = self.segments[0]
+
+
+    def restart(self):
+        for seg in self.segments:
+            seg.hideturtle()
+
+        self.to_initial_pos()
 
 
     def move(self):
