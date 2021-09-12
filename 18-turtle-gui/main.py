@@ -12,7 +12,7 @@ def draw_square(size=100):
         turtle.left(90)
 
 
-square_size = 250
+square_size = 25
 angle = 15
 
 squares_count = int(360 / angle)
@@ -22,6 +22,7 @@ for i in range(squares_count):
     draw_square(square_size)
     turtle.circle(radius)
     turtle.right(angle)
+
 
 screen = Screen()
 screen.bgcolor('#161821')
