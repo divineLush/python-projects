@@ -12,7 +12,7 @@ def draw_square(size=100):
         turtle.left(90)
 
 
-square_size = 25
+square_size = 250
 angle = 15
 
 squares_count = int(360 / angle)
