@@ -22,22 +22,35 @@ screen.onkey(snake.left, 'Left')
 screen.onkey(snake.right, 'Right')
 
 is_game_on = True
+
+def game_over():
+    global is_game_on
+    is_game_on = False
+    scoreboard.game_over()
+
 while is_game_on:
     screen.update()
     sleep(0.1)
     snake.move()
 
+    # detect collision with food
     if snake.head.distance(food) < 15:
         food.refresh()
+        snake.extend()
         scoreboard.inc()
 
+    # detect collision with wall
     is_wall_right = snake.head.xcor() > 295
     is_wall_left = snake.head.xcor() < -295
     is_wall_top = snake.head.ycor() > 295
     is_wall_bottom = snake.head.ycor() < -295
     if is_wall_right or is_wall_left or is_wall_top or is_wall_bottom:
-        is_game_on = False
-        scoreboard.game_over()
+        game_over()
+
+    # detect collision with tail
+    for seg in snake.segments[1:]:
+        if snake.head.distance(seg) < 10:
+            game_over()
 
 
 screen.exitonclick()
